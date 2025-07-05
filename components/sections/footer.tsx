@@ -16,15 +16,15 @@ import {
 const socialLinks = [
   {
     name: "GitHub",
-    href: "https://github.com/santhoshkumar0918",
+    href: "https://github.com/MohamedAshiq09",
     icon: Github,
   },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/santhosh-kumar-k-a727ba2a7",
+    href: "https://www.linkedin.com/in/m%C3%B8h%CE%BBm%CE%BEd%CE%BBs%CC%B4hiq%E1%B7%88s%CC%B4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     icon: Linkedin,
   },
-  { name: "Twitter", href: "https://x.com/Santhosh0918_", icon: Twitter },
+  { name: "Twitter", href: "https://x.com/Ash__05_", icon: Twitter },
   { name: "Email", href: "mailto:santhoshkumarkbsv09@gmail.com", icon: Mail },
 ];
 
@@ -62,7 +62,7 @@ export function Footer() {
                 <Code className="w-5 h-5 text-white" />
               </div>
               <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Santhosh Kumar
+                MOHAMED ASHIQ S
               </h3>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
@@ -154,7 +154,7 @@ export function Footer() {
         >
           <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
             <div className="flex items-center space-x-2 text-sm text-gray-400">
-              <span>© 2025 Santhosh Kumar. Made with</span>
+              <span>© 2025 MOHAMED ASHIQ S. Made with</span>
               <Heart className="w-4 h-4 text-red-400 animate-pulse" />
               <span>and</span>
               <Coffee className="w-4 h-4 text-yellow-400" />
