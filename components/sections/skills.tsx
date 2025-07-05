@@ -73,7 +73,6 @@ export function Skills() {
   return (
     <section className="py-20 bg-gradient-to-br from-gray-900 to-black relative overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -106,7 +105,6 @@ export function Skills() {
           </p>
         </motion.div>
 
-        {/* Skills Navigation */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -133,9 +131,7 @@ export function Skills() {
           </div>
         </motion.div>
 
-        {/* Skills Display */}
         <div className="space-y-12">
-          {/* Skills Categories - Small Rectangles */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {skillCategories.map((category, index) => (
               <motion.div
@@ -172,7 +168,6 @@ export function Skills() {
             ))}
           </div>
 
-          {/* Active Category Skills */}
           <motion.div
             key={activeCategory}
             initial={{ opacity: 0, y: 20 }}
@@ -203,9 +198,7 @@ export function Skills() {
             </div>
           </motion.div>
 
-          {/* GitHub Stats Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* GitHub Contribution Graph */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -236,7 +229,6 @@ export function Skills() {
               </Card>
             </motion.div>
 
-            {/* GitHub Stats */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -265,7 +257,6 @@ export function Skills() {
               </Card>
             </motion.div>
 
-            {/* Top Languages */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -292,7 +283,6 @@ export function Skills() {
               </Card>
             </motion.div>
 
-            {/* Activity Graph */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -320,7 +310,6 @@ export function Skills() {
             </motion.div>
           </div>
 
-          {/* GitHub Profile Link */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -343,7 +332,6 @@ export function Skills() {
           </motion.div>
         </div>
 
-        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
