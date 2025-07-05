@@ -708,7 +708,7 @@ export function Skills() {
               className="bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-800 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:scale-105"
             >
               <a
-                href="https://github.com/santhoshkumar0918"
+                href="https://github.com/MohamedAshiq09"
                 target="_blank"
                 rel="noopener noreferrer"
               >

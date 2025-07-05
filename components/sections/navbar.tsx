@@ -16,15 +16,15 @@ const navItems = [
 const socialLinks = [
   {
     name: "GitHub",
-    href: "https://github.com/santhoshkumar0918",
+    href: "https://github.com/MohamedAshiq09",
     icon: Github,
   },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/santhosh-kumar-k-a727ba2a7",
+    href: "https://www.linkedin.com/in/m%C3%B8h%CE%BBm%CE%BEd%CE%BBs%CC%B4hiq%E1%B7%88s%CC%B4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     icon: Linkedin,
   },
-  { name: "Twitter", href: "https://x.com/Santhosh0918_", icon: Twitter },
+  { name: "Twitter", href: "https://x.com/Ash__05_", icon: Twitter },
 ];
 
 export function Navbar() {
@@ -98,7 +98,7 @@ export function Navbar() {
                 }}
                 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
               >
-                SK
+                MOHAMED ASHIQ S
               </Link>
             </motion.div>
 
