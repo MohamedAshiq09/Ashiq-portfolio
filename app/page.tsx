@@ -8,7 +8,7 @@ import { BackToTop } from "@/components/back-to-top1";
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main className="relative"> 
       <ScrollProgress />
 
       {/* Hero Section */}
