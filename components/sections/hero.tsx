@@ -300,21 +300,44 @@ export function Hero() {
   return (
     <section
       id="hero-section"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-950 via-black to-gray-950"
     >
-      {/* Background Effects */}
+      {/* Animated Background Mesh */}
+      <div className="absolute inset-0 opacity-40">
+        <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,rgba(6,182,212,0.1)_60deg,transparent_120deg,rgba(16,185,129,0.1)_180deg,transparent_240deg,rgba(6,182,212,0.1)_300deg,transparent_360deg)] animate-spin" style={{animationDuration: '30s'}}></div>
+        <div className="absolute inset-0 bg-[conic-gradient(from_180deg_at_50%_50%,transparent_0deg,rgba(16,185,129,0.08)_60deg,transparent_120deg,rgba(6,182,212,0.08)_180deg,transparent_240deg,rgba(16,185,129,0.08)_300deg,transparent_360deg)] animate-spin" style={{animationDuration: '45s', animationDirection: 'reverse'}}></div>
+      </div>
+
+      {/* Dynamic Background Elements */}
       <div className="absolute inset-0">
         <ParticleSystem />
         <FloatingElements />
       </div>
 
-      {/* Gradient Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+      {/* Floating Geometric Shapes */}
+      <div className="absolute top-20 left-20 w-2 h-2 bg-cyan-400/60 rounded-full animate-ping"></div>
+      <div className="absolute top-40 right-32 w-1 h-1 bg-emerald-400/60 rounded-full animate-ping delay-1000"></div>
+      <div className="absolute bottom-32 left-40 w-1.5 h-1.5 bg-teal-400/60 rounded-full animate-ping delay-500"></div>
+      <div className="absolute bottom-20 right-20 w-2 h-2 bg-cyan-400/60 rounded-full animate-ping delay-1500"></div>
 
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
+      {/* Gradient Orbs with Animation */}
+      <div className="absolute top-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-cyan-500/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-l from-emerald-500/20 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-radial from-teal-500/10 to-transparent rounded-full blur-3xl animate-pulse delay-500"></div>
+
+      {/* Hexagonal Grid Pattern */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMwIDFMMzAgMzBNMzAgMzBMMzAgNTlNMzAgMzBMMTUuNTggMTUuNU0zMCAzMEw0NC40MiAxNS41TTMwIDMwTDQ0LjQyIDQ0LjVNMzAgMzBMMTUuNTggNDQuNSIgc3Ryb2tlPSJyZ2JhKDYsMTgyLDIxMiwwLjEpIiBzdHJva2Utd2lkdGg9IjEiLz4KPC9zdmc+')] bg-[size:60px_60px]"></div>
+      </div>
+
+      {/* Animated Border Lines */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-teal-500/50 to-transparent"></div>
+      <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-cyan-500/50 to-transparent"></div>
+
+      {/* Radial Gradient Overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.4)_70%,rgba(0,0,0,0.8)_100%)]"></div>
 
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
