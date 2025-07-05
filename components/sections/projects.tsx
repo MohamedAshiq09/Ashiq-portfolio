@@ -440,7 +440,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import Image from "next/image";
 
 const projects = [
   {
@@ -521,6 +520,157 @@ export function Projects() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
+  type Project = typeof projects[number];
+  interface ProjectCardProps {
+    project: Project;
+    index: number;
+    className?: string;
+  }
+  const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, className = "" }) => (
+    <Card
+      className={`relative overflow-hidden bg-slate-800/50 border-slate-700/50 backdrop-blur-xl hover:bg-slate-800/70 transition-all duration-700 cursor-pointer group-hover:shadow-2xl group-hover:shadow-cyan-500/20 ${
+        hoveredCard === project.id ? "transform scale-[1.02] rotate-1" : ""
+      } ${className}`}
+      onMouseEnter={() => setHoveredCard(project.id)}
+      onMouseLeave={() => setHoveredCard(null)}
+      onClick={() => setSelectedProject(project.id)}
+    >
+      {/* Project Image */}
+      <div className={`relative overflow-hidden ${
+        index === 0 ? "h-64 md:h-80" : "h-48"
+      }`}>
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-purple-500/30 to-pink-500/30 z-10 mix-blend-overlay"></div>
+        <motion.div
+          className="absolute inset-0"
+          whileHover={{ scale: 1.15, rotate: 2 }}
+          transition={{ duration: 0.6 }}
+        >
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
+        </motion.div>
+
+        {/* Overlay with animated elements */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-20"></div>
+        
+        {/* Floating Action Buttons */}
+        <div className="absolute top-4 right-4 z-30 flex gap-2">
+          <motion.div
+            className="p-2 bg-slate-900/80 backdrop-blur-sm rounded-full border border-slate-700/50"
+            whileHover={{ scale: 1.1, rotate: 360 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Eye className="w-4 h-4 text-cyan-400" />
+          </motion.div>
+          <Badge
+            variant="outline"
+            className={`${
+              project.status === "Live"
+                ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
+                : "bg-amber-500/20 text-amber-300 border-amber-500/40"
+            } backdrop-blur-sm`}
+          >
+            {project.status}
+          </Badge>
+        </div>
+
+        {/* Category Badge */}
+        <div className="absolute bottom-4 left-4 z-30">
+          <Badge
+            variant="outline"
+            className="bg-slate-900/80 text-slate-300 border-slate-600/50 backdrop-blur-sm"
+          >
+            {project.category}
+          </Badge>
+        </div>
+      </div>
+
+      <CardContent className="p-6 space-y-4">
+        {/* Title with Icon */}
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-xl">
+            <project.icon className="w-5 h-5 text-cyan-400" />
+          </div>
+          <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+            {project.title}
+          </h3>
+        </div>
+
+        {/* Description */}
+        <p className="text-slate-300 text-sm leading-relaxed line-clamp-3">
+          {project.description}
+        </p>
+
+        {/* Tech Stack */}
+        <div className="flex flex-wrap gap-2">
+          {project.tags.slice(0, 3).map((tag, tagIndex) => (
+            <motion.div
+              key={tag}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: tagIndex * 0.1 }}
+            >
+              <Badge
+                variant="secondary"
+                className="text-xs bg-gradient-to-r from-cyan-500/10 to-purple-500/10 text-cyan-300 border-cyan-500/20 hover:from-cyan-500/20 hover:to-purple-500/20 transition-all duration-300"
+              >
+                {tag}
+              </Badge>
+            </motion.div>
+          ))}
+          {project.tags.length > 3 && (
+            <Badge
+              variant="secondary"
+              className="text-xs bg-slate-700/50 text-slate-400 border-slate-600/50"
+            >
+              +{project.tags.length - 3}
+            </Badge>
+          )}
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex justify-between items-center pt-2">
+          <div className="flex gap-2">
+            {project.githubUrl && (
+              <motion.button
+                className="p-2 bg-slate-700/50 hover:bg-slate-600/50 rounded-lg transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(project.githubUrl, '_blank');
+                }}
+              >
+                <Github className="w-4 h-4 text-slate-300" />
+              </motion.button>
+            )}
+            <motion.button
+              className="p-2 bg-slate-700/50 hover:bg-slate-600/50 rounded-lg transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open(project.liveUrl, '_blank');
+              }}
+            >
+              <ExternalLink className="w-4 h-4 text-slate-300" />
+            </motion.button>
+          </div>
+
+          <motion.div
+            className="flex items-center gap-2 text-cyan-400 text-sm font-medium"
+            whileHover={{ x: 5 }}
+          >
+            <span>Explore</span>
+            <ArrowRight className="w-4 h-4" />
+          </motion.div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
   return (
     <section className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
       {/* Animated Background */}
@@ -570,170 +720,93 @@ export function Projects() {
           </p>
         </motion.div>
 
-        {/* Projects Masonry Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
+        {/* Projects Custom Layout */}
+        <div className="space-y-8">
+          {/* Top Row: Meringoo spanning 2/3 + SupplyChain 1/3 */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Meringoo - Large featured project */}
             <motion.div
-              key={project.id}
               initial={{ opacity: 0, y: 60, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ 
                 duration: 0.7, 
-                delay: index * 0.15,
+                delay: 0,
                 type: "spring",
                 bounce: 0.3
               }}
               viewport={{ once: true }}
-              className={`relative group ${
-                index === 0 ? "md:col-span-2 lg:col-span-2 md:row-span-2" : ""
-              }`}
+              className="lg:col-span-2 relative group"
             >
-              <Card
-                className={`relative overflow-hidden bg-slate-800/50 border-slate-700/50 backdrop-blur-xl hover:bg-slate-800/70 transition-all duration-700 cursor-pointer group-hover:shadow-2xl group-hover:shadow-cyan-500/20 ${
-                  hoveredCard === project.id ? "transform scale-[1.02] rotate-1" : ""
-                }`}
-                onMouseEnter={() => setHoveredCard(project.id)}
-                onMouseLeave={() => setHoveredCard(null)}
-                onClick={() => setSelectedProject(project.id)}
-              >
-                {/* Project Image */}
-                <div className={`relative overflow-hidden ${
-                  index === 0 ? "h-64 md:h-80" : "h-48"
-                }`}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-purple-500/30 to-pink-500/30 z-10 mix-blend-overlay"></div>
-                  <motion.div
-                    className="absolute inset-0"
-                    whileHover={{ scale: 1.15, rotate: 2 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                  </motion.div>
-
-                  {/* Overlay with animated elements */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-20"></div>
-                  
-                  {/* Floating Action Buttons */}
-                  <div className="absolute top-4 right-4 z-30 flex gap-2">
-                    <motion.div
-                      className="p-2 bg-slate-900/80 backdrop-blur-sm rounded-full border border-slate-700/50"
-                      whileHover={{ scale: 1.1, rotate: 360 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Eye className="w-4 h-4 text-cyan-400" />
-                    </motion.div>
-                    <Badge
-                      variant="outline"
-                      className={`${
-                        project.status === "Live"
-                          ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
-                          : "bg-amber-500/20 text-amber-300 border-amber-500/40"
-                      } backdrop-blur-sm`}
-                    >
-                      {project.status}
-                    </Badge>
-                  </div>
-
-                  {/* Category Badge */}
-                  <div className="absolute bottom-4 left-4 z-30">
-                    <Badge
-                      variant="outline"
-                      className="bg-slate-900/80 text-slate-300 border-slate-600/50 backdrop-blur-sm"
-                    >
-                      {project.category}
-                    </Badge>
-                  </div>
-                </div>
-
-                <CardContent className="p-6 space-y-4">
-                  {/* Title with Icon */}
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-xl">
-                      <project.icon className="w-5 h-5 text-cyan-400" />
-                    </div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
-                      {project.title}
-                    </h3>
-                  </div>
-
-                  {/* Description */}
-                  <p className="text-slate-300 text-sm leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
-
-                  {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.slice(0, 3).map((tag, tagIndex) => (
-                      <motion.div
-                        key={tag}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: tagIndex * 0.1 }}
-                      >
-                        <Badge
-                          variant="secondary"
-                          className="text-xs bg-gradient-to-r from-cyan-500/10 to-purple-500/10 text-cyan-300 border-cyan-500/20 hover:from-cyan-500/20 hover:to-purple-500/20 transition-all duration-300"
-                        >
-                          {tag}
-                        </Badge>
-                      </motion.div>
-                    ))}
-                    {project.tags.length > 3 && (
-                      <Badge
-                        variant="secondary"
-                        className="text-xs bg-slate-700/50 text-slate-400 border-slate-600/50"
-                      >
-                        +{project.tags.length - 3}
-                      </Badge>
-                    )}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex justify-between items-center pt-2">
-                    <div className="flex gap-2">
-                      {project.githubUrl && (
-                        <motion.button
-                          className="p-2 bg-slate-700/50 hover:bg-slate-600/50 rounded-lg transition-colors"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(project.githubUrl, '_blank');
-                          }}
-                        >
-                          <Github className="w-4 h-4 text-slate-300" />
-                        </motion.button>
-                      )}
-                      <motion.button
-                        className="p-2 bg-slate-700/50 hover:bg-slate-600/50 rounded-lg transition-colors"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(project.liveUrl, '_blank');
-                        }}
-                      >
-                        <ExternalLink className="w-4 h-4 text-slate-300" />
-                      </motion.button>
-                    </div>
-
-                    <motion.div
-                      className="flex items-center gap-2 text-cyan-400 text-sm font-medium"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span>Explore</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </motion.div>
-                  </div>
-                </CardContent>
-              </Card>
+              <ProjectCard project={projects[0]} index={0} />
             </motion.div>
-          ))}
+
+            {/* SupplyChain */}
+            <motion.div
+              initial={{ opacity: 0, y: 60, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ 
+                duration: 0.7, 
+                delay: 0.15,
+                type: "spring",
+                bounce: 0.3
+              }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <ProjectCard project={projects[1]} index={1} />
+            </motion.div>
+          </div>
+
+          {/* Middle Row: Nammakirana spanning full width */}
+          <motion.div
+            initial={{ opacity: 0, y: 60, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ 
+              duration: 0.7, 
+              delay: 0.3,
+              type: "spring",
+              bounce: 0.3
+            }}
+            viewport={{ once: true }}
+            className="relative group"
+          >
+            <ProjectCard project={projects[2]} index={2} />
+          </motion.div>
+
+          {/* Bottom Row: LearnoPoly and Decap - Each taking half width */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* LearnoPoly */}
+            <motion.div
+              initial={{ opacity: 0, y: 60, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ 
+                duration: 0.7, 
+                delay: 0.45,
+                type: "spring",
+                bounce: 0.3
+              }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <ProjectCard project={projects[3]} index={3} />
+            </motion.div>
+
+            {/* Decap */}
+            <motion.div
+              initial={{ opacity: 0, y: 60, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ 
+                duration: 0.7, 
+                delay: 0.6,
+                type: "spring",
+                bounce: 0.3
+              }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <ProjectCard project={projects[4]} index={4} />
+            </motion.div>
+          </div>
         </div>
 
         {/* Enhanced Project Modal */}
@@ -785,11 +858,10 @@ export function Projects() {
 
                       {/* Project Image */}
                       <div className="relative h-64 rounded-2xl overflow-hidden">
-                        <Image
+                        <img
                           src={project.image}
                           alt={project.title}
-                          fill
-                          className="object-cover"
+                          className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
                       </div>
