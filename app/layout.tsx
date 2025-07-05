@@ -18,7 +18,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata = {
   metadataBase: new URL("https://santhoshkumar-lime.vercel.app"), // Your domain
 
-  title: "Santhosh Kumar | Full-Stack Web3 Developer",
+  title: "MOHAMED ASHIQ S | Full-Stack Web3 Developer",
   description:
     "Premium Web3 development services - Building tomorrow's digital infrastructure with cutting-edge blockchain technology",
   keywords: [
@@ -29,14 +29,14 @@ export const metadata = {
     "Next.js",
     "Solidity",
   ],
-  authors: [{ name: "Santhosh Kumar K" }],
-  creator: "Santhosh Kumar K",
+  authors: [{ name: "MOHAMED ASHIQ S" }],
+  creator: "MOHAMED ASHIQ S",
   openGraph: {
     title: "Santhosh Kumar | Full-Stack Web3 Developer",
     description:
       "Premium Web3 development services - Building tomorrow's digital infrastructure",
-    url: "https://santhoshkumar.dev",
-    siteName: "Santhosh Kumar Portfolio",
+    url: "https://ASHIQ.dev",
+    siteName: "MOHAMED ASHIQ S Portfolio",
     images: [
       {
         url: "/og-image.jpg",
@@ -49,7 +49,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Santhosh Kumar | Full-Stack Web3 Developer",
+    title: "MOHAMED ASHIQ S | Full-Stack Web3 Developer",
     description:
       "Premium Web3 development services - Building tomorrow's digital infrastructure",
     creator: "@Santhosh0918_",
